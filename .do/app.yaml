@@ -1,0 +1,12 @@
+name: angelikasawicka-pl
+region: fra
+static_sites:
+  - name: web
+    github:
+      repo: mikolehman/angelikasawicka.pl
+      branch: main
+      deploy_on_push: true
+    build_command: npm run build
+    output_dir: dist
+    routes:
+      - path: /
