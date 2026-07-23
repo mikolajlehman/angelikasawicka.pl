@@ -3,8 +3,6 @@ region: fra
 domains:
   - domain: angelikasawicka.pl
     type: PRIMARY
-  - domain: www.angelikasawicka.pl
-    type: ALIAS
 static_sites:
   - name: web
     github:
