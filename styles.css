@@ -226,59 +226,41 @@ h3 {
   isolation: isolate;
 }
 
-.shape,
-.orbit {
+.hero-art::after {
   position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 52%, rgba(14, 44, 37, 0.42) 100%),
+    linear-gradient(90deg, rgba(23, 63, 53, 0.08), transparent 32%);
+  content: "";
+  pointer-events: none;
 }
 
-.orbit {
-  border: 1px solid rgba(255, 253, 249, 0.45);
-  border-radius: 50%;
-}
-
-.orbit-one {
-  top: 10%;
-  left: -38%;
-  width: 105%;
-  aspect-ratio: 1;
-}
-
-.orbit-two {
-  right: -35%;
-  bottom: -20%;
-  width: 110%;
-  aspect-ratio: 1;
-}
-
-.shape-sun {
-  top: 17%;
-  right: 16%;
-  width: 29%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #efc164;
-  box-shadow: 0 0 0 1.5rem rgba(239, 193, 100, 0.15);
-}
-
-.shape-leaf {
-  right: 12%;
-  bottom: -7%;
-  width: 66%;
-  height: 62%;
-  border-radius: 100% 0;
-  background: var(--berry);
-  transform: rotate(-8deg);
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 48rem;
+  object-fit: cover;
+  object-position: 50% 45%;
 }
 
 .hero-quote {
   position: absolute;
   z-index: 2;
-  right: 12%;
-  bottom: 14%;
+  right: clamp(1.25rem, 5vw, 4rem);
+  bottom: clamp(1.25rem, 5vw, 4rem);
   display: flex;
   gap: 0.8rem;
   align-items: flex-start;
+  padding: 1.35rem 1.5rem 1.2rem;
+  border: 1px solid rgba(255, 253, 249, 0.28);
+  border-radius: 1rem;
   color: var(--white);
+  background: rgba(14, 44, 37, 0.82);
+  box-shadow: 0 1.5rem 4rem rgba(14, 44, 37, 0.2);
+  backdrop-filter: blur(0.5rem);
 }
 
 .hero-quote > span {
@@ -289,8 +271,9 @@ h3 {
 }
 
 .hero-quote p {
+  margin-bottom: 0;
   font-family: var(--display);
-  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-size: clamp(1.5rem, 2.2vw, 2.35rem);
   line-height: 1.06;
 }
 
@@ -756,6 +739,25 @@ footer p:last-child {
 
   .hero-art {
     min-height: 31rem;
+  }
+
+  .hero-photo {
+    min-height: 31rem;
+    object-position: 50% 38%;
+  }
+
+  .hero-quote {
+    right: 1rem;
+    bottom: 1rem;
+    padding: 1rem 1.15rem 0.9rem;
+  }
+
+  .hero-quote > span {
+    font-size: 3rem;
+  }
+
+  .hero-quote p {
+    font-size: 1.45rem;
   }
 
   .intro,
