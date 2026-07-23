@@ -302,7 +302,25 @@
             </div>
           </div>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="https://formspree.io/f/meeyrayv"
+          method="POST"
+        >
+          <input
+            class="form-honeypot"
+            name="_gotcha"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+          <input
+            name="_subject"
+            type="hidden"
+            value="Nowe zapytanie o prywatną konsultację"
+          />
           <div class="form-field">
             <label for="contact-name">Imię</label>
             <input id="contact-name" name="name" type="text" autocomplete="name" required />
@@ -327,11 +345,22 @@
           </div>
           <button class="button form-submit" type="submit">Napisz do mnie</button>
           <p class="form-note">
-            Po kliknięciu otworzy się Twoja aplikacja pocztowa z gotową wiadomością.
-            Wiadomość zostanie zaadresowana bezpośrednio do dr Angeliki Sawickiej.
+            Formularz wyśle wiadomość bez opuszczania tej strony.
+            Trafi ona bezpośrednio do dr Angeliki Sawickiej.
             Nie wpisuj tutaj szczegółowych danych o zdrowiu.
           </p>
           <p class="form-status" id="form-status" aria-live="polite"></p>
+          <div class="form-success" id="form-success" tabindex="-1" hidden>
+            <p class="eyebrow">Wiadomość wysłana</p>
+            <h3>Dziękuję za kontakt.</h3>
+            <p>
+              Twoje zapytanie dotarło. Odpowiem osobiście na podany adres e-mail,
+              aby ustalić możliwy termin konsultacji.
+            </p>
+            <button class="text-link form-reset" id="form-reset" type="button">
+              Wyślij kolejną wiadomość
+            </button>
+          </div>
         </form>
         <p class="contact-note">
           Jeśli doświadczasz bezpośredniego zagrożenia zdrowia lub życia,

@@ -2,32 +2,52 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
+const formSuccess = document.getElementById("form-success");
+const formReset = document.getElementById("form-reset");
 
-contactForm?.addEventListener("submit", (event) => {
+contactForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const formData = new FormData(contactForm);
-  const name = String(formData.get("name") || "").trim();
-  const email = String(formData.get("email") || "").trim();
-  const phone = String(formData.get("phone") || "").trim();
-  const message = String(formData.get("message") || "").trim();
+  const submitButton = contactForm.querySelector(".form-submit");
+  const originalButtonText = submitButton.textContent;
 
-  const subject = `Zapytanie o prywatną konsultację — ${name}`;
-  const body = [
-    `Dzień dobry Pani Angeliko,`,
-    "",
-    message,
-    "",
-    "Dane do odpowiedzi:",
-    `Imię: ${name}`,
-    `E-mail: ${email}`,
-    phone ? `Telefon: ${phone}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  submitButton.disabled = true;
+  submitButton.textContent = "Wysyłam…";
+  formStatus.className = "form-status";
+  formStatus.textContent = "Bezpiecznie wysyłam Twoją wiadomość…";
 
-  const recipient = ["a.sawicka", "cognic.pl"].join("@");
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-  formStatus.textContent = "Otwieram wiadomość w Twojej aplikacji pocztowej…";
-  window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!response.ok) {
+      throw new Error("Form submission failed");
+    }
+
+    contactForm.reset();
+    contactForm.classList.add("is-sent");
+    formSuccess.hidden = false;
+    formSuccess.focus?.();
+    formStatus.textContent = "";
+  } catch {
+    formStatus.classList.add("is-error");
+    formStatus.textContent =
+      "Nie udało się wysłać wiadomości. Sprawdź połączenie i spróbuj ponownie.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  }
+});
+
+formReset?.addEventListener("click", () => {
+  contactForm.classList.remove("is-sent");
+  formSuccess.hidden = true;
+  formStatus.className = "form-status";
+  formStatus.textContent = "";
+  contactForm.querySelector("#contact-name")?.focus();
 });
