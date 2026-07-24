@@ -616,6 +616,38 @@ details p {
   box-shadow: 0 2rem 5rem rgba(23, 63, 53, 0.08);
 }
 
+.consultation-pricing {
+  margin-bottom: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.consultation-pricing .eyebrow {
+  margin: 0;
+  padding: 1rem 0 0.75rem;
+  color: var(--coral);
+}
+
+.consultation-pricing > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.consultation-pricing > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.consultation-pricing strong {
+  flex: 0 0 auto;
+  font-family: var(--display);
+  font-size: 1.65rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
